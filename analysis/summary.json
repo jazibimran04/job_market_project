@@ -1,0 +1,127 @@
+{
+  "total_jobs": 294,
+  "top_skills": [
+    [
+      "go",
+      93
+    ],
+    [
+      "collaboration",
+      64
+    ],
+    [
+      "communication",
+      53
+    ],
+    [
+      "machine learning",
+      36
+    ],
+    [
+      "python",
+      23
+    ],
+    [
+      "kubernetes",
+      21
+    ],
+    [
+      "java",
+      19
+    ],
+    [
+      "kotlin",
+      14
+    ],
+    [
+      "docker",
+      13
+    ],
+    [
+      "aws",
+      11
+    ],
+    [
+      "bigquery",
+      11
+    ],
+    [
+      "api",
+      10
+    ],
+    [
+      "gcp",
+      7
+    ],
+    [
+      "ci/cd",
+      7
+    ],
+    [
+      "typescript",
+      6
+    ]
+  ],
+  "top_locations": [],
+  "top_companies": [
+    [
+      "Reddit",
+      144
+    ],
+    [
+      "Duolingo",
+      81
+    ],
+    [
+      "Grammarly",
+      69
+    ]
+  ],
+  "level_breakdown": {
+    "Entry-level": 159,
+    "Internship": 4,
+    "Other": 131
+  },
+  "top_titles": [
+    [
+      "Software Engineer",
+      50
+    ],
+    [
+      "Product Manager",
+      21
+    ],
+    [
+      "Data Scientist",
+      11
+    ],
+    [
+      "Head Of Dtc, Commerce",
+      4
+    ],
+    [
+      "Senior Account Executive",
+      4
+    ],
+    [
+      "Intern",
+      3
+    ],
+    [
+      "Senior Community Manager",
+      3
+    ],
+    [
+      "Senior Android Engineer, Apps Platform (Performance)",
+      3
+    ],
+    [
+      "Senior Technical Solutions Manager, Signals",
+      3
+    ],
+    [
+      "Ai Research Engineer, New Phd Graduate",
+      2
+    ]
+  ]
+}

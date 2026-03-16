@@ -7,12 +7,28 @@ from scrapy_project.items import JobItem
 
 class JobSpider(scrapy.Spider):
     name = "job_spider"
-    allowed_domains = ["boards.greenhouse.io", "jobs.lever.co", "lever.co"]
+    allowed_domains = [
+        "boards.greenhouse.io",
+        "job-boards.greenhouse.io",
+        "jobs.lever.co",
+        "app.lever.co",
+        "lever.co",
+        "grnh.se",
+        "greenhouse.io",
+        "careers.duolingo.com",
+        "careers.grammarly.com",
+        "reddit.greenhouse.io",
+        "canonical.com",
+        "jobgether.com",
+        "pantheon.io",
+    ]
+
     links_file = os.path.join("data", "raw", "job_links.csv")
 
     custom_settings = {
         "DOWNLOAD_DELAY": 2,
         "RANDOMIZE_DOWNLOAD_DELAY": True,
+        "ROBOTSTXT_OBEY": False,
     }
 
     def start_requests(self):
@@ -31,16 +47,20 @@ class JobSpider(scrapy.Spider):
                     "platform":   row.get("platform", "Unknown"),
                     "seed_title": row.get("title", ""),
                 }
-                yield scrapy.Request(url, callback=self.parse_job, meta=meta, errback=self.handle_error)
+                yield scrapy.Request(
+                    url,
+                    callback=self.parse_job,
+                    meta=meta,
+                    errback=self.handle_error,
+                    dont_filter=True,
+                )
 
     def parse_job(self, response):
         url = response.url
-        if "greenhouse.io" in url:
-            return self.parse_greenhouse(response)
-        elif "lever.co" in url:
+        if "lever.co" in url:
             return self.parse_lever(response)
         else:
-            self.logger.warning(f"Unknown platform for URL: {url}")
+            return self.parse_greenhouse(response)
 
     def parse_greenhouse(self, response):
         item = JobItem()
@@ -72,7 +92,9 @@ class JobSpider(scrapy.Spider):
         )
         desc_parts = response.css("#content, .content, [class*='description']").css("::text").getall()
         item["job_description"] = self._clean_text(" ".join(desc_parts))
-        salary_text = " ".join(response.css("[class*='salary'], [class*='compensation']::text").getall())
+        salary_text = " ".join(
+            response.css("[class*='salary'], [class*='compensation']::text").getall()
+        )
         item["salary"] = salary_text.strip() or "Not specified"
         item["experience_level"] = self._detect_experience_level(
             item["job_title"] + " " + item["job_description"]
@@ -125,9 +147,9 @@ class JobSpider(scrapy.Spider):
     @staticmethod
     def _detect_employment_type(hint):
         h = hint.lower()
-        if any(w in h for w in ["full", "ft"]):   return "Full-time"
-        if any(w in h for w in ["part", "pt"]):   return "Part-time"
-        if "contract" in h:                        return "Contract"
+        if any(w in h for w in ["full", "ft"]):      return "Full-time"
+        if any(w in h for w in ["part", "pt"]):      return "Part-time"
+        if "contract" in h:                           return "Contract"
         if any(w in h for w in ["intern", "co-op"]): return "Internship"
         return "Not specified"
 
