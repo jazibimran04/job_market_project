@@ -1,7 +1,4 @@
 # Job Market Data Collection & Analysis
-### Tools & Techniques for Data Science — Assignment 1
-**University of Central Punjab | Faculty of IT & CS**
-
 ---
 
 ## Project Overview
