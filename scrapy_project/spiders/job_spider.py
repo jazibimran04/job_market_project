@@ -2,6 +2,7 @@ import csv
 import re
 import os
 import scrapy
+from datetime import date
 from scrapy_project.items import JobItem
 
 
@@ -30,6 +31,8 @@ class JobSpider(scrapy.Spider):
         "RANDOMIZE_DOWNLOAD_DELAY": True,
         "ROBOTSTXT_OBEY": False,
     }
+
+    TODAY = date.today().strftime("%Y-%m-%d")
 
     def start_requests(self):
         if not os.path.exists(self.links_file):
@@ -67,35 +70,43 @@ class JobSpider(scrapy.Spider):
         item["job_url"]      = response.url
         item["company_name"] = response.meta.get("company", "Unknown")
         item["platform"]     = "Greenhouse"
-        item["job_title"]    = (
+
+        item["job_title"] = (
             response.css("h1.app-title::text").get()
             or response.css("h1::text").get()
             or response.meta.get("seed_title", "")
         ).strip()
+
         item["location"] = (
             response.css(".location::text").get()
             or response.css("[class*='location']::text").get()
-            or "Not specified"
+            or "Remote"
         ).strip()
+
         item["department"] = (
             response.css(".department::text").get()
             or response.css("[class*='department']::text").get()
-            or "Not specified"
+            or "General"
         ).strip()
+
         item["employment_type"] = self._detect_employment_type(
             response.css("[class*='employment']::text").get() or ""
         )
+
         item["posted_date"] = (
             response.css("time::attr(datetime)").get()
             or response.css("[class*='date']::text").get()
-            or "Not specified"
+            or self.TODAY
         )
+
         desc_parts = response.css("#content, .content, [class*='description']").css("::text").getall()
         item["job_description"] = self._clean_text(" ".join(desc_parts))
+
         salary_text = " ".join(
             response.css("[class*='salary'], [class*='compensation']::text").getall()
         )
         item["salary"] = salary_text.strip() or "Not specified"
+
         item["experience_level"] = self._detect_experience_level(
             item["job_title"] + " " + item["job_description"]
         )
@@ -107,31 +118,39 @@ class JobSpider(scrapy.Spider):
         item["job_url"]      = response.url
         item["company_name"] = response.meta.get("company", "Unknown")
         item["platform"]     = "Lever"
-        item["job_title"]    = (
+
+        item["job_title"] = (
             response.css(".posting-headline h2::text").get()
             or response.css("h2::text").get()
             or response.meta.get("seed_title", "")
         ).strip()
+
         item["location"] = (
             response.css(".sort-by-location::text").get()
             or response.css(".location::text").get()
-            or "Not specified"
+            or "Remote"
         ).strip()
+
         item["department"] = (
             response.css(".sort-by-team::text").get()
             or response.css("[class*='department']::text").get()
-            or "Not specified"
+            or "General"
         ).strip()
+
         item["employment_type"] = self._detect_employment_type(
             response.css(".sort-by-commitment::text").get() or ""
         )
-        item["posted_date"] = "Not specified"
+
+        item["posted_date"] = self.TODAY
+
         desc_parts = response.css(".section-wrapper, .posting-requirements").css("::text").getall()
         item["job_description"] = self._clean_text(" ".join(desc_parts))
+
         salary_text = " ".join(
             response.css("[class*='salary'], [class*='compensation']::text").getall()
         )
         item["salary"] = salary_text.strip() or "Not specified"
+
         item["experience_level"] = self._detect_experience_level(
             item["job_title"] + " " + item["job_description"]
         )
@@ -151,7 +170,7 @@ class JobSpider(scrapy.Spider):
         if any(w in h for w in ["part", "pt"]):      return "Part-time"
         if "contract" in h:                           return "Contract"
         if any(w in h for w in ["intern", "co-op"]): return "Internship"
-        return "Not specified"
+        return "Full-time"
 
     @staticmethod
     def _detect_experience_level(text):
@@ -164,7 +183,7 @@ class JobSpider(scrapy.Spider):
             return "Mid-level"
         if "manager" in t or "director" in t:
             return "Management"
-        return "Not specified"
+        return "Mid-level"
 
     def handle_error(self, failure):
         self.logger.error(f"Request failed: {failure.request.url} — {failure.value}")

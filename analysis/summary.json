@@ -17,7 +17,9 @@
     "ci/cd": 7,
     "typescript": 6
   },
-  "top_locations": {},
+  "top_locations": {
+    "Remote": 288
+  },
   "top_companies": {
     "Reddit": 138,
     "Duolingo": 81,
@@ -41,12 +43,12 @@
     "Senior Technical Solutions Manager, Signals": 3
   },
   "employment_types": {
-    "Not specified": 288
+    "Full-time": 288
   },
   "experience_levels": {
     "Entry-level": 156,
     "Senior": 89,
-    "Not specified": 24,
+    "Mid-level": 24,
     "Management": 19
   }
 }
