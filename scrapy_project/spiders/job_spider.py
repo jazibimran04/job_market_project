@@ -2,6 +2,7 @@ import csv
 import re
 import os
 import json
+import html
 import scrapy
 from datetime import date
 from scrapy_project.items import JobItem
@@ -51,9 +52,9 @@ class JobSpider(scrapy.Spider):
         with open(self.links_file, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                url = row.get("url", "").strip()
+                url      = row.get("url", "").strip()
                 platform = row.get("platform", "").strip()
-                company = row.get("company", "Unknown").strip()
+                company  = row.get("company", "Unknown").strip()
                 if not url:
                     continue
                 if company.lower() in self.GREENHOUSE_COMPANIES:
@@ -100,7 +101,9 @@ class JobSpider(scrapy.Spider):
             item["department"] = dept[0].get("name", "General") if dept else "General"
 
             raw_desc = job.get("content", "") or ""
+            raw_desc = html.unescape(raw_desc)
             clean_desc = re.sub(r"<[^>]+>", " ", raw_desc)
+            clean_desc = re.sub(r"&[a-zA-Z]+;", " ", clean_desc)
             clean_desc = re.sub(r"\s+", " ", clean_desc).strip()
             item["job_description"] = clean_desc[:3000]
 
