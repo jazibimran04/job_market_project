@@ -1,7 +1,4 @@
 # Hiring Trends Report
-## Tools & Techniques for Data Science — Assignment 1
-### University of Central Punjab
-
 ---
 
 ### 1. Data Collection Summary
