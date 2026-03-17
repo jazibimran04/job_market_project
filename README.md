@@ -12,23 +12,19 @@ This project builds an end-to-end job market data pipeline. We selected five rea
 
 ## Data Sources
 
-We selected five publicly accessible job boards across two platforms:
-
 | Company | Platform | URL |
 |---------|----------|-----|
 | Reddit | Greenhouse | https://boards.greenhouse.io/reddit |
 | Duolingo | Greenhouse | https://boards.greenhouse.io/duolingo |
 | Grammarly | Greenhouse | https://boards.greenhouse.io/grammarly |
 | Canonical | Lever | https://jobs.lever.co/canonical |
-| Jobgether | Lever | https://jobs.lever.co/jobgether |
+| Lever | Lever | https://jobs.lever.co/lever |
 
-All sources are publicly accessible. No login, authentication bypass, or CAPTCHA solving was used at any point.
+All sources are publicly accessible. No login, authentication bypass, or CAPTCHA solving was used.
 
 ---
 
 ## Why Selenium and Scrapy Together
-
-We used both tools because each serves a different purpose in the pipeline.
 
 Selenium handled the browser-side automation. It opened each careers page, waited for JavaScript-rendered content to fully load, and collected the individual job detail page URLs. This step produced the intermediate file job_links.csv.
 
@@ -42,27 +38,29 @@ This two-tool approach reflects how scraping pipelines are built in real product
 ```
 job_market_project/
 ├── selenium/
-│   └── job_scraper.py        
+│   └── job_scraper.py
 ├── scrapy_project/
 │   ├── spiders/
-│   │   └── job_spider.py     
-│   ├── items.py              
-│   ├── pipelines.py          
-│   └── settings.py           
+│   │   └── job_spider.py
+│   ├── items.py
+│   ├── pipelines.py
+│   └── settings.py
 ├── data/
 │   ├── raw/
-│   │   └── job_links.csv     
+│   │   └── job_links.csv
 │   └── final/
-│       ├── jobs.csv          
-│       └── jobs.json         
+│       ├── jobs.csv
+│       └── jobs.json
 ├── analysis/
-│   ├── analyze_jobs.py       
-│   ├── summary.json          
-│   ├── top_skills.png        
-│   ├── top_companies.png     
-│   └── top_titles.png        
+│   ├── analyze_jobs.py
+│   ├── summary.json
+│   ├── top_skills.png
+│   ├── top_companies.png
+│   ├── top_titles.png
+│   ├── top_locations.png
+│   └── experience_levels.png
 ├── docs/
-│   └── report.md             
+│   └── report.md
 ├── requirements.txt
 ├── scrapy.cfg
 ├── .gitignore
@@ -84,8 +82,6 @@ Step 2 — Install dependencies
 pip install -r requirements.txt
 ```
 
-Step 3 — Install ChromeDriver matching your Chrome version from https://googlechromelabs.github.io/chrome-for-testing/
-
 ---
 
 ## How to Run
@@ -94,19 +90,16 @@ Step 1 — Collect job URLs using Selenium
 ```bash
 python selenium/job_scraper.py
 ```
-This visits all five job boards and saves URLs to data/raw/job_links.csv
 
 Step 2 — Extract job details using Scrapy
 ```bash
 scrapy crawl job_spider
 ```
-This reads job_links.csv and saves results to data/final/jobs.csv and jobs.json
 
 Step 3 — Run the analysis
 ```bash
 python analysis/analyze_jobs.py
 ```
-This prints a hiring trends report and saves charts to the analysis/ folder
 
 ---
 
@@ -117,26 +110,27 @@ This prints a hiring trends report and saves charts to the analysis/ folder
 | job_title | Exact posting title |
 | company_name | Source company name |
 | location | City, Remote, or Hybrid |
-| department | Engineering, Product, etc. |
+| department | Engineering, Product, Finance etc. |
 | employment_type | Full-time, Contract, Internship |
-| posted_date | Posting date where available |
+| posted_date | Posting date |
 | job_url | Canonical detail page URL |
-| job_description | Main description text |
+| job_description | Clean description text |
 | required_skills | Keywords extracted from description |
-| experience_level | Entry-level, Mid, Senior (inferred) |
+| experience_level | Entry-level, Mid, Senior, Management |
 | salary | Where publicly listed |
 
 ---
 
 ## Key Findings
 
-After collecting and analyzing 294 job listings:
+After collecting and analyzing 295 job listings:
 
-- Most in-demand skills: Python, Go, Machine Learning, Kubernetes, Docker, AWS
-- Top hiring companies: Reddit (144 roles), Duolingo (81 roles), Grammarly (69 roles)
-- Entry-level positions: 159 out of 294 jobs (54.1%) were entry-level roles
-- Most common titles: Software Engineer, Product Manager, Data Scientist
-- Locations: Most roles were either Remote or based in San Francisco and New York
+- Most in-demand skills: Go, Collaboration, Machine Learning, Python, Kubernetes
+- Top hiring companies: Reddit (143 roles), Duolingo (81 roles), Grammarly (71 roles)
+- Top locations: Remote (90), New York NY (33), San Francisco CA (32), Pittsburgh PA (26)
+- Entry-level positions: 240 out of 295 jobs (81.4%)
+- Most common titles: Software Engineer (51), Product Manager (19), Data Scientist (11)
+- Employment types: Full-time (287), Contract (5), Part-time (2), Internship (1)
 
 ---
 
@@ -146,11 +140,11 @@ After collecting and analyzing 294 job listings:
 |--------|---------|
 | main | Stable final version |
 | develop | Integration branch |
-| feature/selenium-search | Selenium automation work |
-| feature/scrapy-job-parser | Scrapy spider development |
+| feature/selenium-search | Selenium automation |
+| feature/scrapy-job-parser | Scrapy spider |
 | feature/analysis-report | Analysis script |
 
-All features were developed in dedicated branches, merged into develop, then merged into main. The submission version is tagged as v1.0.
+All features were developed in dedicated branches, merged into develop, then merged into main. Tagged as v1.0.
 
 ---
 
@@ -158,7 +152,6 @@ All features were developed in dedicated branches, merged into develop, then mer
 
 - Only publicly accessible pages were scraped
 - No login, authentication bypass, or CAPTCHA solving was used
-- Polite request delays of 2 seconds between requests were applied
-- ROBOTSTXT_OBEY is enabled in Scrapy settings
-- No personal candidate data was collected
-- All data sources are documented above for transparency
+- Polite request delays applied throughout
+- ROBOTSTXT_OBEY enabled in Scrapy settings
+- No personal candidate data collected

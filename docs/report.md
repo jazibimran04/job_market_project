@@ -1,51 +1,96 @@
 # Hiring Trends Report
 ## Tools & Techniques for Data Science — Assignment 1
+### University of Central Punjab
+
+---
 
 ### 1. Data Collection Summary
-Job listings were collected from five publicly accessible company career boards
-across two platforms (Greenhouse and Lever).
 
-| Source   | Platform   |
-|----------|------------|
-| Airtable | Greenhouse |
-| Asana    | Greenhouse |
-| Notion   | Lever      |
-| Zapier   | Lever      |
-| Figma    | Greenhouse |
+Job listings were collected from five publicly accessible company career boards across two platforms — Greenhouse and Lever.
+
+| Source | Platform | Jobs Collected |
+|--------|----------|----------------|
+| Reddit | Greenhouse | 143 |
+| Duolingo | Greenhouse | 81 |
+| Grammarly | Greenhouse | 71 |
+| Canonical | Lever | — |
+| Lever | Lever | — |
+| Total | | 295 |
+
+---
 
 ### 2. Top Skills in Demand
-- Python appeared in the majority of data-related roles
-- SQL was required in nearly all analytics and backend positions
-- React and TypeScript dominated frontend roles
-- AWS and GCP appeared heavily in infrastructure roles
+
+Based on keyword extraction from 295 job descriptions:
+
+- Go appeared in 81 postings — most in-demand technical skill
+- Collaboration and communication dominated soft skill requirements
+- Machine Learning appeared in 31 postings
+- Python, Kubernetes, Java, and Docker were consistently required
+- Cloud skills — AWS, GCP, Azure — appeared across multiple roles
+
+---
 
 ### 3. Locations with Most Openings
-- Remote positions represented the largest single category
-- San Francisco and New York were the top physical locations
-- Hybrid arrangements appeared frequently in mid-sized companies
 
-### 4. Entry-Level and Internship Positions
-A significant portion of listings targeted junior candidates.
-Internship postings were identifiable from both employment type
-and title keywords such as Intern, Co-op, and New Grad.
+- Remote positions led with 90 openings
+- New York, NY had 33 openings — top physical location
+- San Francisco, CA had 32 openings
+- Pittsburgh, PA had 26 openings — strong Duolingo presence
+- Berlin and London also appeared in international roles
 
-### 5. Most Common Job Title Families
-1. Software Engineer
-2. Data Engineer / Data Analyst
-3. Product Manager
-4. DevOps / Platform Engineer
-5. QA / Test Engineer
+---
 
-### 6. Methodology and Assumptions
-- Selenium loaded JavaScript-rendered job listing pages and collected URLs
-- Scrapy crawled each URL extracting structured fields
+### 4. Companies Posting Most Roles
+
+- Reddit posted the most roles with 143 openings
+- Duolingo followed with 81 roles
+- Grammarly posted 71 roles
+- Reddit dominated with roles across Engineering, Product, and Sales
+
+---
+
+### 5. Entry-Level and Internship Positions
+
+- 240 out of 295 jobs (81.4%) were entry-level roles
+- 4 internship positions were identified
+- This indicates strong hiring activity for new graduates
+
+---
+
+### 6. Most Common Job Title Families
+
+1. Software Engineer — 51 postings
+2. Product Manager — 19 postings
+3. Data Scientist — 11 postings
+4. ML Engineer — 11 postings
+5. Senior Account Executive — 4 postings
+
+---
+
+### 7. Employment Type Breakdown
+
+- Full-time: 287 positions (97.3%)
+- Contract: 5 positions
+- Part-time: 2 positions
+- Internship: 1 position
+
+---
+
+### 8. Methodology and Assumptions
+
+- Selenium was used to load JavaScript-rendered job listing pages and collect detail page URLs
+- Scrapy used the Greenhouse public API to extract fully structured fields
 - Skills were extracted via regex matching against a predefined keyword list
 - Experience level was inferred from job title and description keywords
-- Request delays of 2 to 4 seconds were applied throughout
+- Salary data was available for 45 out of 295 jobs
 
-### 7. Sources
-- https://boards.greenhouse.io/airtable
-- https://boards.greenhouse.io/asana
-- https://www.notion.so/careers
-- https://zapier.com/jobs
-- https://www.figma.com/careers/
+---
+
+### 9. Sources
+
+- https://boards.greenhouse.io/reddit
+- https://boards.greenhouse.io/duolingo
+- https://boards.greenhouse.io/grammarly
+- https://jobs.lever.co/canonical
+- https://jobs.lever.co/lever
