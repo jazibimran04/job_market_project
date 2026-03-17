@@ -1,117 +1,72 @@
 {
-  "total_jobs": 4319,
+  "total_jobs": 288,
   "top_skills": [
     [
-      "communication",
-      3036
-    ],
-    [
-      "collaboration",
-      2188
-    ],
-    [
       "go",
-      516
-    ],
-    [
-      "python",
-      504
-    ],
-    [
-      "agile",
-      402
-    ],
-    [
-      "ci/cd",
-      366
-    ],
-    [
-      "aws",
-      356
-    ],
-    [
-      "api",
-      290
-    ],
-    [
-      "github",
-      288
-    ],
-    [
-      "sql",
-      279
-    ],
-    [
-      "typescript",
-      206
-    ],
-    [
-      "kubernetes",
-      178
-    ],
-    [
-      "docker",
-      160
-    ],
-    [
-      "rest",
-      156
-    ],
-    [
-      "gcp",
-      152
-    ]
-  ],
-  "top_locations": [
-    [
-      "US",
-      698
-    ],
-    [
-      "Remote",
       92
     ],
     [
-      "Saudi Arabia",
-      71
+      "collaboration",
+      63
     ],
     [
-      "Kenya",
-      70
+      "communication",
+      53
     ],
     [
-      "United Arab Emirates",
-      70
+      "machine learning",
+      33
     ],
     [
-      "Nigeria",
-      69
+      "python",
+      23
     ],
     [
-      "India",
-      68
+      "kubernetes",
+      21
     ],
     [
-      "Spain",
-      68
+      "java",
+      19
     ],
     [
-      "Turkey",
-      68
+      "kotlin",
+      14
     ],
     [
-      "Portugal",
-      67
+      "docker",
+      13
+    ],
+    [
+      "aws",
+      11
+    ],
+    [
+      "bigquery",
+      11
+    ],
+    [
+      "api",
+      10
+    ],
+    [
+      "gcp",
+      7
+    ],
+    [
+      "ci/cd",
+      7
+    ],
+    [
+      "typescript",
+      6
     ]
   ],
+  "top_locations": [],
   "top_companies": [
     [
-      "Jobgether",
-      4025
-    ],
-    [
       "Reddit",
-      143
+      138
     ],
     [
       "Duolingo",
@@ -119,54 +74,54 @@
     ],
     [
       "Grammarly",
-      70
+      69
     ]
   ],
   "level_breakdown": {
-    "Entry-level": 2568,
-    "Internship": 51,
-    "Other": 1700
+    "Entry-level": 152,
+    "Internship": 4,
+    "Other": 132
   },
   "top_titles": [
     [
       "Software Engineer",
-      167
-    ],
-    [
-      "Product Manager",
-      155
-    ],
-    [
-      "Backend Engineer",
-      93
-    ],
-    [
-      "Data Scientist",
-      60
-    ],
-    [
-      "Intern",
       50
     ],
     [
-      "QA / Test Engineer",
-      48
+      "Product Manager",
+      19
     ],
     [
-      "Account Manager",
-      47
+      "Data Scientist",
+      9
     ],
     [
-      "Content Marketing Strategist",
-      46
+      "Head Of Dtc, Commerce",
+      4
     ],
     [
-      "Sdet (Wallet Platform)",
-      46
+      "Senior Account Executive",
+      4
     ],
     [
-      "Senior Developer Experience Engineer",
-      46
+      "Intern",
+      3
+    ],
+    [
+      "Senior Community Manager",
+      3
+    ],
+    [
+      "Senior Android Engineer, Apps Platform (Performance)",
+      3
+    ],
+    [
+      "Senior Technical Solutions Manager, Signals",
+      3
+    ],
+    [
+      "Ai Research Engineer, New Phd Graduate",
+      2
     ]
   ]
 }
