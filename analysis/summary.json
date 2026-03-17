@@ -1,40 +1,49 @@
 {
-  "total_jobs": 288,
+  "total_jobs": 295,
   "top_skills": {
-    "go": 92,
-    "collaboration": 63,
-    "communication": 53,
-    "machine learning": 33,
-    "python": 23,
-    "kubernetes": 21,
-    "java": 19,
-    "kotlin": 14,
-    "docker": 13,
-    "aws": 11,
-    "bigquery": 11,
-    "api": 10,
-    "gcp": 7,
-    "ci/cd": 7,
-    "typescript": 6
+    "collaboration": 83,
+    "go": 81,
+    "machine learning": 31,
+    "communication": 20,
+    "kubernetes": 9,
+    "python": 8,
+    "kotlin": 7,
+    "java": 7,
+    "api": 7,
+    "react": 6,
+    "typescript": 5,
+    "r": 4,
+    "swift": 4,
+    "docker": 4,
+    "deep learning": 3
   },
   "top_locations": {
-    "Remote": 288
+    "Remote": 90,
+    "New York, NY": 33,
+    "San Francisco, CA": 32,
+    "Pittsburgh, PA": 26,
+    "New York City, NY": 17,
+    "Berlin, Germany": 10,
+    "London, England": 9,
+    "United States": 7,
+    "London, United Kingdom": 7,
+    "Seattle, WA": 6
   },
   "top_companies": {
-    "Reddit": 138,
+    "Reddit": 143,
     "Duolingo": 81,
-    "Grammarly": 69
+    "Grammarly": 71
   },
   "level_breakdown": {
     "Internship": 4,
-    "Entry-level": 156,
-    "Other": 128
+    "Entry-level": 240,
+    "Other": 51
   },
   "top_titles": {
-    "Software Engineer": 50,
+    "Software Engineer": 51,
     "Product Manager": 19,
+    "Data Scientist": 11,
     "ML Engineer": 11,
-    "Data Scientist": 9,
     "Head Of Dtc, Commerce": 4,
     "Senior Account Executive": 4,
     "Intern": 3,
@@ -43,12 +52,15 @@
     "Senior Technical Solutions Manager, Signals": 3
   },
   "employment_types": {
-    "Full-time": 288
+    "Full-time": 287,
+    "Contract": 5,
+    "Part-time": 2,
+    "Internship": 1
   },
   "experience_levels": {
-    "Entry-level": 156,
-    "Senior": 89,
-    "Mid-level": 24,
-    "Management": 19
+    "Entry-level": 240,
+    "Senior": 46,
+    "Mid-level": 8,
+    "Management": 1
   }
 }
