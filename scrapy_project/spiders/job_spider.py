@@ -191,9 +191,9 @@ class JobSpider(scrapy.Spider):
 
     SKILL_KEYWORDS = [
         "python", "javascript", "typescript", "java", "c++", "c#", "go", "golang",
-        "rust", "scala", "kotlin", "swift", "r", "sql", "bash", "shell",
+        "rust", "scala", "kotlin", "swift", "r programming", "sql", "bash", "shell",
         "react", "vue", "angular", "html", "css", "node.js", "nodejs", "next.js",
-        "graphql", "rest", "api", "pandas", "numpy", "spark", "hadoop", "kafka",
+        "graphql", "rest api", "pandas", "numpy", "spark", "hadoop", "kafka",
         "airflow", "dbt", "tensorflow", "pytorch", "scikit-learn", "machine learning",
         "deep learning", "nlp", "data pipeline", "etl", "aws", "gcp", "azure",
         "docker", "kubernetes", "ci/cd", "terraform", "git", "github", "linux",
@@ -220,14 +220,16 @@ class JobSpider(scrapy.Spider):
     @staticmethod
     def _detect_experience_level(text):
         t = text.lower()
-        if any(w in t for w in ["junior", "entry", "entry-level", "jr.", "new grad", "intern"]):
-            return "Entry-level"
-        if any(w in t for w in ["senior", "sr.", "staff", "lead", "principal"]):
+        if any(w in t for w in ["staff ", "staff,", "principal", "director", "vp ", "vice president", "head of"]):
             return "Senior"
-        if any(w in t for w in ["mid", "mid-level", "intermediate"]):
-            return "Mid-level"
-        if "manager" in t or "director" in t:
+        if "manager" in t:
             return "Management"
+        if any(w in t for w in ["senior", "sr.", " lead", "lead "]):
+            return "Senior"
+        if any(w in t for w in ["junior", "entry-level", "entry level", "jr.", "new grad", "intern", "associate"]):
+            return "Entry-level"
+        if any(w in t for w in ["mid-level", "mid level", "intermediate", "ii ", " ii,", "iii ", " iii,"]):
+            return "Mid-level"
         return "Mid-level"
 
     def handle_error(self, failure):
