@@ -13,4 +13,3 @@ class JobItem(scrapy.Item):
     required_skills  = scrapy.Field()
     experience_level = scrapy.Field()
     salary           = scrapy.Field()
-    platform         = scrapy.Field()

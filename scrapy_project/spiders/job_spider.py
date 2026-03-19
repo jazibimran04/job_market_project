@@ -85,7 +85,6 @@ class JobSpider(scrapy.Spider):
         for job in jobs:
             item = JobItem()
             item["company_name"] = company
-            item["platform"]     = "Greenhouse"
             item["job_title"]    = job.get("title", "").strip()
             item["job_url"]      = job.get("absolute_url", "").strip()
             item["posted_date"]  = (job.get("updated_at", "") or self.TODAY)[:10]
@@ -133,7 +132,6 @@ class JobSpider(scrapy.Spider):
         item = JobItem()
         item["job_url"]      = response.url
         item["company_name"] = response.meta.get("company", "Unknown")
-        item["platform"]     = "Lever"
 
         item["job_title"] = (
             response.css(".posting-headline h2::text").get()
@@ -169,7 +167,7 @@ class JobSpider(scrapy.Spider):
         item["experience_level"] = self._detect_experience_level(
             item["job_title"] + " " + item["job_description"]
         )
-        item["required_skills"] = ""
+        item["required_skills"] = self._extract_skills(item["job_description"])
         yield item
 
     @staticmethod
